@@ -1,11 +1,24 @@
 public class IntegerToRoman {
     public static void main(String[] args) {
+        IntegerToRoman task = new IntegerToRoman();
         int num = 1994;
-        String res = intToRoman(num);
+        String res = task.intToRoman2(num);
         System.out.println(res);
     }
 
-    public static String intToRoman(int num) {
+    public String intToRoman2(int num) {
+        StringBuilder sb = new StringBuilder();
+        int rank = 1;
+        while(num>0){
+            int digit = num%10;
+            sb.insert(0,getRomanDigit(digit, rank));
+            num/=10;
+            rank*=10;
+        }
+        return sb.toString();
+    }
+
+    public String intToRoman(int num) {
         int rank = 10000;
         StringBuilder sb = new StringBuilder();
         while (rank > 1) {
@@ -17,7 +30,7 @@ public class IntegerToRoman {
         return sb.toString();
     }
 
-    public static String getRomanDigit(int digit, int rank) {
+    public String getRomanDigit(int digit, int rank) {
         String romanUnit1 = "I";
         String romanUnit5 = "V";
         if (rank > 1) {
