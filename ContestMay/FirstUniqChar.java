@@ -30,7 +30,7 @@ public class FirstUniqChar {
         return -1;
     }
 
-    public static int firstUniqChar1(String s) {
+    public static int firstUniqChar(String s) {
 
         Hashtable<Character,Integer> dict = new Hashtable<>();
 
@@ -45,7 +45,7 @@ public class FirstUniqChar {
             }
         }
 
-        
+
 
         return -1;
     }
