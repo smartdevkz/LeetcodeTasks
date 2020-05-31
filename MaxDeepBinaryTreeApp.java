@@ -13,6 +13,12 @@ public class MaxDeepBinaryTreeApp {
         return getDepth(root, 1);
     }
 
+    //solution
+    public int maxDepth2(TreeNode root) {
+        if (root == null) return 0;
+        return Math.max(maxDepth(root.left), maxDepth(root.right)) + 1;
+    }
+
     int getDepth(TreeNode node, int h) {
         if (node.left == null && node.right == null)
             return h;
