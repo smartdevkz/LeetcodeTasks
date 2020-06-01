@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 public class MinStackApp {
 
@@ -16,51 +17,46 @@ public class MinStackApp {
         display(minStack);
         minStack.push(-3);
         display(minStack);
-        print("min: "+minStack.getMin()); // return -3
+        print("min: " + minStack.getMin()); // return -3
         minStack.pop();
         display(minStack);
-        print("top: "+minStack.top());// return 0
-        print("min: "+minStack.getMin());
+        print("top: " + minStack.top());// return 0
+        print("min: " + minStack.getMin());
     }
 
-    void print(Object x){
+    void print(Object x) {
         System.out.println(x);
     }
 
     void display(MinStack stack) {
-        for (Integer item : stack.items) {
-            System.out.print(item + " ");
-        }
+        /*
+         * for (Integer item : stack.items) { System.out.print(item + " "); }
+         */
         System.out.println("");
     }
 
     class MinStack {
-        List<Integer> items;
-
-        /** initialize your data structure here. */
-        public MinStack() {
-            items = new ArrayList<>();
-        }
+        private Stack<Integer> stack = new Stack<>();
+        private Stack<Integer> minStack = new Stack<>();
 
         public void push(int x) {
-            items.add(0, x);
+            stack.push(x);
+            if (minStack.isEmpty() || x <= minStack.peek()) {
+                minStack.push(x);
+            }
         }
 
         public void pop() {
-            if (items.size() > 0)
-                items.remove(0);
+            if (stack.pop().equals(minStack.peek()))
+                minStack.pop();
         }
 
         public int top() {
-            return items.get(0);
+            return stack.peek();
         }
 
         public int getMin() {
-            int min = items.get(0);
-            for(int i=1;i<items.size();i++){
-                if(items.get(i)<min)min=items.get(i);
-            }
-            return min;
+            return minStack.peek();
         }
     }
 }
