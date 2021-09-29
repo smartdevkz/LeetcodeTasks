@@ -10,35 +10,34 @@ public class Solution1859 {
 
     public String sortSentence(String s) {
         String[] arr = s.split(" ");
-        for (int i = 0; i < arr.length - 1; i++) {
-            int minIndex = getMinimumIndex(arr, i);
-            String temp = arr[i];
-            arr[i] = arr[minIndex];
-            arr[minIndex] = temp;
-            arr[i] = getCorrectedString(arr[i]);
+
+        int i = 0;
+        while (i < arr.length) {
+            Character c = arr[i].charAt(arr[i].length() - 1);
+            if (isNumeric(c)) {
+                int number = parseInt(c);
+                var temp = arr[number - 1];
+                arr[number - 1] = arr[i];
+                arr[i] = temp;
+                arr[number - 1] = getCorrectedString(arr[number - 1]);
+            } else {
+                i++;
+            }
         }
-        arr[arr.length - 1] = getCorrectedString(arr[arr.length - 1]);
+
         return String.join(" ", arr);
+    }
+
+    boolean isNumeric(Character c) {
+        return Character.isDigit(c);
+    }
+
+    int parseInt(Character c) {
+        return Character.getNumericValue(c);
     }
 
     String getCorrectedString(String s) {
         return s.substring(0, s.length() - 1);
     }
 
-    int getMinimumIndex(String[] arr, int start) {
-        int min = getNumber(arr[start]);
-        int index = start;
-        for (int i = start + 1; i < arr.length; i++) {
-            int current = getNumber(arr[i]);
-            if (current < min) {
-                min = current;
-                index = i;
-            }
-        }
-        return index;
-    }
-
-    int getNumber(String s) {
-        return Character.getNumericValue(s.charAt(s.length() - 1));
-    }
 }
