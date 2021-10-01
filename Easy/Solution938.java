@@ -5,21 +5,12 @@ import base.TreeNode;
 //938. Range Sum of BST
 public class Solution938 {
     public int rangeSumBST(TreeNode root, int low, int high) {
-        this.low = low;
-        this.hight = high;
-        dfs(root);
-        return s;
-    }
-
-    int s = 0;
-    int low, hight;
-
-    void dfs(TreeNode node) {
-        if (node == null)
-            return;
-        if (node.val >= low && node.val <= hight)
-            s += node.val;
-        dfs(node.left);
-        dfs(node.right);
+        if (root == null)
+            return 0;
+        if (root.val < low)
+            return rangeSumBST(root.right, low, high);
+        if (root.val > high)
+            return rangeSumBST(root.left, low, high);
+        return root.val + rangeSumBST(root.left, low, high) + rangeSumBST(root.right, low, high);
     }
 }
