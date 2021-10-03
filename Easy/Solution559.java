@@ -2,26 +2,33 @@ package Easy;
 
 import base.Node;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
 //559. Maximum Depth of N-ary Tree
 public class Solution559 {
 
-    int max = 0;
-
     public int maxDepth(Node root) {
-        process(root, 1);
-        return max;
-    }
+        if (root == null)
+            return 0;
 
-    void process(Node node, int level) {
-        if (node == null)
-            return;
-        if (level > max)
-            max = level;
-        if (node.children != null) {
-            node.children.forEach(item -> {
-                process(item, level + 1);
-            });
+        Queue<Node> queue = new LinkedList<>();
+        queue.offer(root);
+
+        int depth = 0;
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            for (int i = 0; i < size; i++) {
+                Node current = queue.poll();
+                current.children.forEach(item -> {
+                    queue.offer(item);
+                });
+            }
+            depth++;
         }
+
+        return depth;
     }
 
 }
