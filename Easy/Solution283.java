@@ -6,7 +6,7 @@ import utils.Utils;
 public class Solution283 {
     public static void main(String[] args) {
         int[] nums = new int[] { 1, 1 };
-        var app = new Solution977();
+        var app = new Solution283();
         app.moveZeroes(nums);
         Utils.printArray(nums);
     }

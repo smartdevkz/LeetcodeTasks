@@ -12,4 +12,8 @@ public class Utils {
     public static void printArray(int[] arr) {
         display(arr);
     }
+
+    public static void print(Object obj){
+        System.out.println(obj.toString());
+    }
 }
