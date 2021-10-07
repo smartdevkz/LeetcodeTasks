@@ -3,7 +3,7 @@ package Easy;
 import utils.Utils;
 
 //283. Move Zeroes
-public class Solution977 {
+public class Solution283 {
     public static void main(String[] args) {
         int[] nums = new int[] { 1, 1 };
         var app = new Solution977();

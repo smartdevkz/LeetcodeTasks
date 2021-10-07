@@ -17,10 +17,10 @@ public class Solution1351 {
             int l = 0;
             int r = arr.length - 1;
             if (arr[r] >= 0)
-                break;
+                continue;
             if (arr[l] < 0) {
                 s += arr.length;
-                break;
+                continue;
             }
             while (r - l > 1) {
                 int d = l + (r - l) / 2;
