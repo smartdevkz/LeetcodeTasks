@@ -6,5 +6,10 @@ public class Utils {
             System.out.print(i);
             System.out.print(" ");
         }
+        System.out.println("");
+    }
+
+    public static void printArray(int[] arr) {
+        display(arr);
     }
 }
