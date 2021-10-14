@@ -14,6 +14,9 @@ public class Solution832 {
                 image[i][n - 1 - j] = image[i][n - 1 - j] == 0 ? 1 : 0;
                 j++;
             }
+            if(n==2*j+1){
+                image[i][j] = image[i][j] == 0 ? 1 : 0;     
+            }
         }
         return image;
     }
