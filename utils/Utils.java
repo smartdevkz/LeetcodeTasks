@@ -27,7 +27,18 @@ public class Utils {
         System.out.println("");
     }
 
-    public static void print(Object obj){
+    public static void printArray(int[][] grid) {
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[i].length; j++) {
+                System.out.print(i);
+                System.out.print(" ");
+            }
+            System.out.println("");
+        }
+        System.out.println("");
+    }
+
+    public static void print(Object obj) {
         System.out.println(obj.toString());
     }
 }
