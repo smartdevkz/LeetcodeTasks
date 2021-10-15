@@ -3,20 +3,10 @@ package Easy;
 //965. Univalued Binary Tree
 public class Solution965 {
     public boolean isUnivalTree(TreeNode root) {
-        return dfs(root, root.val);
-    }
-
-    boolean dfs(TreeNode node, int n) {
-        if (node == null)
-            return true;
-        if (node.val != n)
-            return false;
-        var left = dfs(node.left, n);
+        boolean left = root.left == null || (root.left.val == root.val && isUnivalTree(root.left));
         if (!left)
-            return false;
-        var right = dfs(node.right, n);
-        if (!right)
-            return false;
-        return true;
+            return left;
+        boolean right = root.right == null || (root.right.val == root.val && isUnivalTree(root.right));
+        return left && right;
     }
 }
