@@ -1,5 +1,6 @@
 package Easy;
 
+//1812. Determine Color of a Chessboard Square
 public class Solution1812 {
     public boolean squareIsWhite(String coordinates) {
         int a = coordinates.charAt(0) - 'a' + 1;
