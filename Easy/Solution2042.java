@@ -15,6 +15,12 @@ public class Solution2042 {
             if (!Character.isDigit(item.charAt(0)))
                 continue;
             int number = Integer.parseInt(item);
+            if (prev >= number) {
+                return false;
+            } else {
+                prev = number;
+            }
         }
+        return true;
     }
 }
