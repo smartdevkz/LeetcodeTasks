@@ -4,12 +4,13 @@ package Easy;
 public class Solution1374 {
     public String generateTheString(int n) {
         StringBuilder builder = new StringBuilder();
-        if (n % 2 == 1) {
-            builder.append('c');
+        if (n % 2 == 0) {
+            builder.append('a');
             n--;
         }
-        for (int i = 0; i < n-1; i++) {
-            builder.append('a');
+        while (n > 0) {
+            builder.append('b');
+            n--;
         }
         return builder.toString();
     }
