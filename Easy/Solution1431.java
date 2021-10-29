@@ -1,8 +1,8 @@
 package Easy;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 //1431. Kids With the Greatest Number of Candies
 public class Solution1431 {
@@ -12,8 +12,10 @@ public class Solution1431 {
             if (max < candies[i])
                 max = candies[i];
         }
-        int fMax = max;
-        return Arrays.stream(candies).mapToObj(i -> i + extraCandies >= fMax).map(Boolean::booleanValue)
-                .collect(Collectors.toList());
+        List<Boolean> res = new ArrayList<>();
+        for (int i = 0; i < candies.length; i++) {
+            res.add(candies[i] + extraCandies >= max);
+        }
+        return res;
     }
 }
