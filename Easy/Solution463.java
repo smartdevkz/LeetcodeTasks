@@ -1,5 +1,7 @@
 package Easy;
 
+import java.rmi.server.RemoteStub;
+
 //463. Island Perimeter
 public class Solution463 {
 
@@ -11,48 +13,34 @@ public class Solution463 {
     }
 
     public int islandPerimeter(int[][] grid) {
-        // find a first land
-        int i = 0, j = 0;
-        outerloop: for (i = 0; i < grid.length; i++) {
-            for (j = 0; j < grid[i].length; j++) {
-                if (grid[i][j] == 1) {
-                    break outerloop;
-                }
+        int p = 0;
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[i].length; j++) {
+                p += getPerimeter(i, j, grid);
             }
         }
-        // start count a perimeter
-        return dfs(i, j, grid);
+        return p;
     }
 
-    int dfs(int i, int j, int[][] grid) {
-        if (isWater(i, j, grid))
+    int getPerimeter(int i, int j, int[][] grid) {
+        if (grid[i][j] == 0)
             return 0;
-        int s = 0;
-        //bottom
-        if (isWater(i - 1, j, grid)) {
-            s++;
-        }
-        //top
-        if (isWater(i + 1, j, grid)) {
-            s++;
-        }
-        //left
-        if (isWater(i, j - 1, grid)) {
-            s++;
-        }
-        //right
-        if (isWater(i, j + 1, grid)) {
-            s++;
-        }
-        return s + dfs(i - 1, j, grid) + dfs(i + 1, j, grid) + dfs(i, j - 1, grid) + dfs(i, j + 1, grid);
+        int p = 0;
+        if (isWater(i + 1, j, grid))
+            p++;
+        if (isWater(i - 1, j, grid))
+            p++;
+        if (isWater(i, j + 1, grid))
+            p++;
+        if (isWater(i, j - 1, grid))
+            p++;
+        return p;
     }
 
     boolean isWater(int i, int j, int[][] grid) {
-        System.out.println(i + "," + j);
-        if (i < 0 || i >= grid.length)
-            return true;
-        if (j < 0 || j >= grid[i].length)
-            return true;
-        return grid[i][j] == 0;
+        if (i >= 0 && i < grid.length && j >= 0 && j < grid[i].length) {
+            return grid[i][j] == 0;
+        }
+        return true;
     }
 }
