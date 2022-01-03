@@ -15,6 +15,8 @@ public class Solution1130 {
         if (arr.length < 2)
             return 0;
         int p = getProduct(arr);
+        if (arr.length == 2)
+            return p;
         if (p == 0)
             return 0;
         int i = getIndex(arr);
@@ -32,7 +34,7 @@ public class Solution1130 {
     }
 
     private int[] getSubArray(int[] arr, int startIndex, int endIndex) {
-        int[] res = new int[endIndex + startIndex];
+        int[] res = new int[endIndex - startIndex];
         for (int i = 0; i < res.length; i++) {
             res[i] = arr[startIndex + i];
         }
@@ -40,16 +42,16 @@ public class Solution1130 {
     }
 
     private int getIndex(int[] arr) {
-        int sum = getSum2(arr);
-        int min = sum;
-        int minIndex = -1;
-        int s1 = 0;
-        int s2 = sum;
-        for (int i = 0; i < arr.length; i++) {
-            s1 += arr[i];
-            s2 -= arr[i];
-            if (min > s1 + s2) {
-                min = s1 + s2;
+        int min = getProduct(arr);
+        int minIndex = 0;
+
+        for (int i = 1; i < arr.length; i++) {
+            var arr1 = getSubArray(arr, 0, i);
+            var arr2 = getSubArray(arr, i, arr.length);
+            int p1 = getProduct(arr1);
+            int p2 = getProduct(arr2);
+            if (min > p1 + p2) {
+                min = p1 + p2;
                 minIndex = i;
             }
         }
