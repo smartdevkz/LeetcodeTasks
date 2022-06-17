@@ -1,8 +1,5 @@
 package Easy;
 
-import java.util.ArrayList;
-import java.util.List;
-
 //https://leetcode.com/problems/design-hashset/
 public class Solution705 {
     public static void main(String[] args) {
