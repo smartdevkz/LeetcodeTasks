@@ -50,7 +50,9 @@ cmake-build-*/
 *.iws
 
 # IntelliJ
-out/
+out/*
+TopLeetcode/out/*
+TopLeetcode/out/production/*
 
 # mpeltonen/sbt-idea plugin
 .idea_modules/

@@ -54,8 +54,6 @@ public class Solution32 {
     }
 
     public static void main(String[] args) {
-        var app = new Solution32();
-        var res = app.longestValidParentheses(")()())");
-        System.out.println(res);
+
     }
 }

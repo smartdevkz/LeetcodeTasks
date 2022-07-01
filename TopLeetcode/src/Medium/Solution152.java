@@ -15,11 +15,4 @@ public class Solution152 {
         }
         return res;
     }
-
-    public static void main(String[] args) {
-        int[] nums = new int[]{1, 0, -1, 2, 3, -5, -2};
-        var app = new Solution152();
-        var res = app.maxProduct(nums);
-        System.out.println(res);
-    }
 }
