@@ -2,7 +2,7 @@ package Hard;
 
 //https://leetcode.com/problems/wildcard-matching/
 public class Solution44 {
-    public boolean isMatch(String s, String p) {
+    public boolean isMatch2(String s, String p) {
         System.out.println("s=" + s + ", p=" + p);
         int i = 0;
         int j = 0;
@@ -34,10 +34,48 @@ public class Solution44 {
         return i >= s.length() && j >= p.length();
     }
 
+    String cleanUpPattern(String p) {
+        var sb = new StringBuilder();
+        Character prev = '+';
+        for (var c : p.toCharArray()) {
+            if (prev == '*' && c == '*') {
+                continue;
+            }
+            sb.append(c);
+            prev = c;
+        }
+        return sb.toString();
+    }
+
+    public boolean isMatch(String s, String p) {
+        int n = p.length();
+        int m = s.length();
+
+        var dp = new boolean[n + 1][m + 1];
+        dp[0][0] = true;
+
+        for (int i = 1; i <= n; i++) {
+            dp[i][0] = p.charAt(i - 1) == '*' ? dp[i - 1][0] : false;
+        }
+
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= m; j++) {
+                if (p.charAt(i - 1) == '*') {
+                    dp[i][j] = dp[i - 1][j - 1] || dp[i][j - 1] || dp[i - 1][j];
+                } else {
+                    if (p.charAt(i - 1) == '?' || p.charAt(i - 1) == s.charAt(j - 1)) {
+                        dp[i][j] = dp[i - 1][j - 1];
+                    }
+                }
+            }
+        }
+        return dp[n][m];
+    }
+
     public static void main(String[] args) {
         var app = new Solution44();
         var res = app.isMatch("acdcb", "a*c?b");
-        //var res = app.isMatch("", "*****");
+        //var res = app.isMatch("abcabczzzde", "*abc???de*");
         System.out.println(res);
     }
 }
