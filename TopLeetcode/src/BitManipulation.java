@@ -12,18 +12,6 @@ public class BitManipulation {
         return count;
     }
 
-    HashMap<Integer, LinkedList<Integer>> getHashMap(int n) {
-        var hm = new HashMap<Integer, LinkedList<Integer>>();
-        for (int i = 1; i < Math.pow(2, n) - 1; i++) {
-            var key = countSetBits(i);
-            if (!hm.containsKey(key)) {
-                hm.put(key, new LinkedList<>());
-            }
-            hm.get(key).add(i);
-        }
-        return hm;
-    }
-
     public static void main(String args[]) {
         HashMap<Integer, Integer> hm = new HashMap<>();
         for (int i = 0; i <= 31; i++) {
