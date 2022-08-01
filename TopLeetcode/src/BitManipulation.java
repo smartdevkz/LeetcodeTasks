@@ -12,15 +12,27 @@ public class BitManipulation {
         return count;
     }
 
-    public static void main(String args[]) {
-        HashMap<Integer, Integer> hm = new HashMap<>();
-        for (int i = 0; i <= 31; i++) {
-            int key = countSetBits(i);
-            int count = hm.getOrDefault(key, 0);
-            hm.put(key, count + 1);
-            System.out.print(key);
-            System.out.print(" ");
+    //binary representation of a number
+    static void bin(long n)
+    {
+        long i;
+        System.out.print("0");
+        for (i = 1 << 30; i > 0; i = i / 2)
+        {
+            if((n & i) != 0)
+            {
+                System.out.print("1");
+            }
+            else
+            {
+                System.out.print("0");
+            }
         }
+    }
+
+
+    public static void main(String args[]) {
+        bin(30000);
     }
 
 
