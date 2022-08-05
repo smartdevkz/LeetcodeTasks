@@ -13,26 +13,22 @@ public class BitManipulation {
     }
 
     //binary representation of a number
-    static void bin(long n)
-    {
-        long i;
-        System.out.print("0");
-        for (i = 1 << 30; i > 0; i = i / 2)
-        {
-            if((n & i) != 0)
-            {
-                System.out.print("1");
-            }
-            else
-            {
-                System.out.print("0");
-            }
+    static String bin(int n) {
+        String res = Integer.toBinaryString(n);
+        int k = res.length();
+        for (int i = 0; i < 32 - k; i++) {
+            res = "0" + res;
         }
+        return res;
     }
 
 
     public static void main(String args[]) {
-        bin(30000);
+        //System.out.println(bin(-1));
+        System.out.println(bin(30));
+        System.out.println(bin(~30));
+        System.out.println(bin(-30));
+        System.out.println(~30 & 30);
     }
 
 
