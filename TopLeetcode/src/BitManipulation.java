@@ -29,6 +29,10 @@ public class BitManipulation {
         System.out.println(bin(~30));
         System.out.println(bin(-30));
         System.out.println(~30 & 30);
+        System.out.println(Integer.toBinaryString(1 << 32));
+        int num = 5;
+       
+
     }
 
 
