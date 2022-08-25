@@ -9,7 +9,7 @@ public class Solution84 {
         return getMaxArea(heights, heights.length);
     }
 
-    int getMaxArea(int hist[], int n) {
+    int getMaxArea(int hist[], int n)   {
         Stack<Integer> s = new Stack<>();
 
         int max = 0;
