@@ -1,69 +1,76 @@
 package Hard;
 
+import java.util.Arrays;
+
 //https://leetcode.com/problems/booking-concert-tickets-in-groups/
 public class Solution2286 {
-    class BookMyShow {
-        int[][] arr;
+    public class BookMyShow {
+        int[] arr;
         int n, m;
 
+        int start = 0;
+
         public BookMyShow(int n, int m) {
-            this.arr = new int[n][m];
+            this.arr = new int[n];
+            Arrays.fill(this.arr, m);
             this.n = n;
             this.m = m;
         }
 
         public int[] gather(int k, int maxRow) {
-            int count = 0;
-            if(k > m) return new int[]{};
-            for( int i = 0; i <= maxRow; i++){
-                for(int j = 0; j < m; j++){
-                    if(arr[i][j] == 0){
-                        count++;
-                        if(count == k){
-                            setZeros(i, j-k+1, k);
-                            return new int[]{ i, j-k+1 };
-                        }
-                    } else {
-                        count = 0;
-                    }
+            if (k > m) return new int[]{};
+            for (int i = start; i <= maxRow; i++) {
+                if (arr[i] >= k) {
+                    arr[i] = arr[i] - k;
+                    int col = m - arr[i] - k;
+                    return new int[]{i, col};
                 }
             }
             return new int[]{};
         }
 
-        private void setZeros(int row, int col, int k){
-            for(int j = col; j<col+k;j++){
-                arr[row][j] = 1;
-            }
-        }
-
         public boolean scatter(int k, int maxRow) {
-            int count = 0;
-
-            for( int i = 0; i <= maxRow; i++){
-                for(int j = 0; j < m; j++){
-                    if(arr[i][j] == 0){
-                        arr[i][j] = 2;
-                        count++;
-                        if(count == k){
-                            replace(2,1,i);
-                            return true;
-                        }
-                    }
+            int count = k;
+            for (int i = start; i <= maxRow; i++) {
+                count -= arr[i];
+                if (count <= 0) {
+                    arr[i] = count * -1;
+                    start = arr[i] > 0 ? i : i + 1;
+                    return true;
                 }
             }
-            replace(2,0,maxRow);
             return false;
         }
 
-        void replace(int val, int newVal, int maxRow){
-            for( int i = 0; i <= maxRow; i++){
-                for(int j = 0; j < m; j++){
-                    if(arr[i][j] == val){
-                        arr[i][j] = newVal;
-                    }
+
+        private void display() {
+            System.out.println();
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j < m; j++) {
+                    System.out.print(arr[i] + " ");
                 }
+                System.out.println();
             }
         }
+
     }
+
+    public static void main(String[] args) {
+        var app = new Solution2286();
+        app.run();
+        System.out.println("end!");
+    }
+
+    private void run() {
+        var obj = new BookMyShow(3, 999999999);
+        System.out.println(obj.scatter(1000000000, 2));
+        System.out.println(obj.scatter(999999999, 2));
+        System.out.println(obj.gather(999999999, 2));
+        System.out.println(obj.gather(999999999, 2));
+    }
+
+    /*
+["BookMyShow","scatter","gather","gather","gather"]
+[[3,999999999],[1000000000,2],[999999999,2],[999999999,2],[999999999,2]]
+    * */
 }
