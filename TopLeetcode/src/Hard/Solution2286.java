@@ -4,16 +4,15 @@ import java.util.Arrays;
 
 //https://leetcode.com/problems/booking-concert-tickets-in-groups/
 public class Solution2286 {
-    public class BookMyShow {
+    class BookMyShow {
         int[] arr;
-        int n, m;
+        int m;
 
         int start = 0;
 
         public BookMyShow(int n, int m) {
             this.arr = new int[n];
             Arrays.fill(this.arr, m);
-            this.n = n;
             this.m = m;
         }
 
@@ -30,29 +29,13 @@ public class Solution2286 {
         }
 
         public boolean scatter(int k, int maxRow) {
-            int count = k;
-            for (int i = start; i <= maxRow; i++) {
-                count -= arr[i];
-                if (count <= 0) {
-                    arr[i] = count * -1;
-                    start = arr[i] > 0 ? i : i + 1;
-                    return true;
-                }
-            }
-            return false;
+            int idx = start;
+            while (idx <= maxRow && k > arr[idx]) k -= arr[idx++];
+            if (idx > maxRow && k > 0) return false;
+            arr[idx] -= k;
+            start = idx;
+            return true;
         }
-
-
-        private void display() {
-            System.out.println();
-            for (int i = 0; i < n; i++) {
-                for (int j = 0; j < m; j++) {
-                    System.out.print(arr[i] + " ");
-                }
-                System.out.println();
-            }
-        }
-
     }
 
     public static void main(String[] args) {
