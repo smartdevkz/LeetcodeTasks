@@ -18,7 +18,6 @@ public class Solution401 {
                 if (h > 11) continue;
                 for (int m : minutes) {
                     if (m > 59) continue;
-                    if (h == 0 && m == 0) continue;
                     result.add(h + ":" + (m < 10 ? "0" : "") + m);
                 }
             }
