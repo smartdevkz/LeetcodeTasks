@@ -34,7 +34,6 @@ public class Solution524 {
 
             }
 
-
         }
 
         return result;
