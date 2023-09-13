@@ -17,7 +17,6 @@ public class Solution148 {
     }
 
     private ListNode getMid(ListNode head) {
-
         var slow = head;
         var fast = head;
         ListNode prev = null;
